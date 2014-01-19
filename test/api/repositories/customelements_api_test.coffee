@@ -28,24 +28,13 @@ describe "CustomElements API", ->
 
       api.request().fail (err) -> done()
 
+    describe "with Real API URL", ->
+      it "returns the full json of repos in github", (done) ->
+        api = new CustomElementsAPI(APIendPoint)
 
-    describe "#request with json", ->
-      m = {}
-
-      before ->
-        CustomElementsAPI.prototype.request = ->
-          fixture = path.join(__dirname, "..", "..", "fixtures", "api", "customelements_api.json")
-
-          Q.nfcall(fs.readFile, fixture)
-
-        m.api = new CustomElementsAPI("what-ever")
-
-      it "returns a json with all repositories", (done) ->
-        m.api.request().then (repositories) ->
-          json = JSON.parse(repositories)
-
-          expect(json[0].repository).eql "x-tag/appbar"
-          expect(json[1].repository).eql "x-tag/flipbox"
+        api.request().then (repos) ->
+          expect(repos[0].repository).eql "x-tag/appbar"
+          expect(repos[1].repository).eql "x-tag/flipbox"
 
           done()
 
