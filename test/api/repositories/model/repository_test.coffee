@@ -19,5 +19,5 @@ describe "Repository", ->
     expectProperty("ownerUsername")
     expectProperty("url")
     expectProperty("description")
-    expectProperty("totalForks")
-    expectProperty("totalStarts")
+    expectProperty("totalForks", 0)
+    expectProperty("totalStars", 0)

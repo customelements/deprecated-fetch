@@ -3,8 +3,8 @@ BLANK_REPO =
   ownerUsername: ""
   url: ""
   description: ""
-  totalForks: ""
-  totalStarts: ""
+  totalForks: 0
+  totalStars: 0
 
 
 class Repository
@@ -14,6 +14,6 @@ class Repository
     @url           = repository.url
     @description   = repository.description
     @totalForks    = repository.totalForks
-    @totalStarts   = repository.totalStarts
+    @totalStars    = repository.totalStars
 
 module.exports = Repository
