@@ -1,5 +1,5 @@
 expect = require('chai').expect
-Repository = projectRequire("api/repositories/model/repository")
+Repository = projectRequire("app/models/repository")
 
 describe "Repository", ->
   describe "#constructor", ->

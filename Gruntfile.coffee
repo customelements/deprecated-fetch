@@ -17,7 +17,7 @@ module.exports = (grunt) ->
         options:
           nospawn: true
 
-        files: ["Gruntfile.coffee", "test/**/*.coffee", "api/**/*.coffee"]
+        files: ["Gruntfile.coffee", "test/**/*.coffee"]
         tasks: ["mochacli"]
 
   grunt.registerTask 'default', ['watch']
