@@ -55,7 +55,7 @@ describe "Bower Components API", ->
 
       m.api = new m.klass("what-ever")
 
-    it "returns empty json for bad request", (done) ->
+    it "returns the json in a common format", (done) ->
       m.api.repos().then (repos) ->
         expect(repos[0]).eq "x-tag/view"
         expect(repos[1]).eq "x-tag/transitions"

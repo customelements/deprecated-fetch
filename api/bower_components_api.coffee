@@ -23,8 +23,6 @@ class BowerComponentsAPI
 
   repos: -> @request().then (repos) ->
 
-    _.map repos, (result) ->
-      name = result.name.replace("#{result.owner}-", "")
-      "#{result.owner}/#{name}"
+    _.map repos, (result) -> result.website.replace("https://github.com/", "")
 
 module.exports = BowerComponentsAPI
