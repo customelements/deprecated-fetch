@@ -21,7 +21,8 @@ class Repository
     {
       name: @name
       owner: @owner
-      url: @url
+      url: @repositoryUrl()
+      owner_url: @ownerUrl()
       description: @description
       forks: @forks
       stars: @stars

@@ -38,7 +38,8 @@ describe "Repository", ->
 
       expect(json.name).eq repository.name
       expect(json.owner).eq repository.owner
-      expect(json.url).eq repository.url
+      expect(json.owner_url).eq repo.ownerUrl()
+      expect(json.url).eq repo.repositoryUrl()
       expect(json.description).eq repository.description
       expect(json.forks).eq repository.forks
       expect(json.stars).eq repository.stars
