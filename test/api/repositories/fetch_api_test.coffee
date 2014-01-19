@@ -45,3 +45,16 @@ describe "Fetch API", ->
         done()
 
       .fail (err) -> done(err)
+
+    it "returns all jsons without duplicated repositories", (done) ->
+      json1 = ['repo1', 'repo2']
+      json2 = ['repo1', 'repo4']
+
+      api = new FetchAPI(Q(json1), Q(json2))
+
+      api.repos().then (repos) ->
+        expect(repos).eql ['repo1', 'repo2', 'repo4']
+
+        done()
+
+      .fail (err) -> done(err)
