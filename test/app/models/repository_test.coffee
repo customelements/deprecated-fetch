@@ -16,41 +16,55 @@ describe "Repository", ->
         expect(repo[name]).eq value
 
     expectProperty("name")
-    expectProperty("ownerUsername")
+    expectProperty("owner")
     expectProperty("url", "https://github.com//")
+    expectProperty("owner_url", "https://github.com/")
     expectProperty("description")
-    expectProperty("totalForks", 0)
-    expectProperty("totalStars", 0)
+    expectProperty("forks", 0)
+    expectProperty("stars", 0)
 
   describe "#toJSON", ->
     it "expect to return the repository as a json", ->
       repository =
         name: "fetch-service"
-        ownerUsername: "customelements"
+        owner: "customelements"
         url: "https://github.com/customelements/fetch-service"
         description: "Some description"
-        totalForks: 20
-        totalStars: 10
+        forks: 20
+        stars: 10
 
       repo = new Repository(repository)
       json = repo.toJSON()
 
       expect(json.name).eq repository.name
-      expect(json.ownerUsername).eq repository.ownerUsername
+      expect(json.owner).eq repository.owner
       expect(json.url).eq repository.url
       expect(json.description).eq repository.description
-      expect(json.totalForks).eq repository.totalForks
-      expect(json.totalStars).eq repository.totalStars
+      expect(json.forks).eq repository.forks
+      expect(json.stars).eq repository.stars
 
   describe "#repositoryUrl", ->
     repository =
         name: "fetch-service"
-        ownerUsername: "customelements"
+        owner: "customelements"
         description: ""
-        totalForks: 0
-        totalStars: 0
+        forks: 0
+        stars: 0
 
     it "returns github repository url", ->
       repo = new Repository(repository)
 
-      expect(repo.repositoryUrl()).eq "https://github.com/#{repository.ownerUsername}/#{repository.name}"
+      expect(repo.repositoryUrl()).eq "https://github.com/#{repository.owner}/#{repository.name}"
+
+  describe "#ownerUrl", ->
+    repository =
+        name: "fetch-service"
+        owner: "customelements"
+        description: ""
+        forks: 0
+        stars: 0
+
+    it "returns github owner url", ->
+      repo = new Repository(repository)
+
+      expect(repo.ownerUrl()).eq "https://github.com/#{repository.owner}"

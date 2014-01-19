@@ -5,7 +5,7 @@ fs        = require('fs')
 path      = require('path')
 GithubAPI = projectRequire("api/github_api")
 
-describe "Repository Parse", ->
+describe "Github API", ->
   describe "#constructor", ->
     it "creates an instance of GithubAPI", ->
       expect(new GithubAPI()).to.be.instanceOf GithubAPI

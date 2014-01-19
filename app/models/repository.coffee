@@ -1,31 +1,36 @@
 BLANK_REPO =
   name: ""
-  ownerUsername: ""
+  owner: ""
   description: ""
-  totalForks: 0
-  totalStars: 0
+  forks: 0
+  stars: 0
 
+PREFIX = "https://github.com/"
 
 class Repository
   constructor: (repository = BLANK_REPO) ->
-    @name          = repository.name
-    @ownerUsername = repository.ownerUsername
-    @url           = @repositoryUrl()
-    @description   = repository.description
-    @totalForks    = repository.totalForks
-    @totalStars    = repository.totalStars
+    @name        = repository.name
+    @owner       = repository.owner
+    @url         = @repositoryUrl()
+    @owner_url   = @ownerUrl()
+    @description = repository.description
+    @forks       = repository.forks
+    @stars       = repository.stars
 
   toJSON: ->
     {
       name: @name
-      ownerUsername: @ownerUsername
+      owner: @owner
       url: @url
       description: @description
-      totalForks: @totalForks
-      totalStars: @totalStars
+      forks: @forks
+      stars: @stars
     }
 
   repositoryUrl: ->
-    "https://github.com/#{@ownerUsername}/#{@name}"
+    "#{PREFIX}#{@owner}/#{@name}"
+
+  ownerUrl: ->
+    "#{PREFIX}#{@owner}"
 
 module.exports = Repository

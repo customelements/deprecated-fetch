@@ -9,8 +9,9 @@ GithubAPI         = require('../../api/github_api')
 Repository        = require('../models/repository')
 
 FETCH_INTERVAL         = process.env.FETCH_INTERVAL || 3600000
-BOWER_API_URL          = process.env.API_BOWER_URL || false
-CUSTOMELEMENTS_API_URL = process.env.API_CUSTOMELEMENTS_URL || false
+BOWER_API_URL          = process.env.BOWER_API_URL || false
+CUSTOMELEMENTS_API_URL = process.env.CUSTOMELEMENTS_API_URL || false
+
 githubApi   = new GithubAPI()
 redisClient = redis.createClient()
 
@@ -45,10 +46,10 @@ parseJsonFrom = (reposJson) ->
         repo = result.value
         data =
           name: repo.name
-          ownerUsername: repo.owner.login
+          owner: repo.owner.login
           description: repo.description
-          totalForks: repo.forks_count
-          totalStars: repo.stargazers_count
+          forks: repo.forks_count
+          stars: repo.stargazers_count
 
         new Repository(data).toJSON()
 
