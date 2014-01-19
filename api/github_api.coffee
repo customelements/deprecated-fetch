@@ -12,7 +12,6 @@ requestAPI = (options) ->
   options = _.assign(defaults, options)
 
   request options, (error, response, body) ->
-    console.log error, response, body
     defer.reject new Error(error) if error
     defer.reject new Error("404") if response.statusCode != 200
 
