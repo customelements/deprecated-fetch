@@ -21,6 +21,7 @@ class BowerComponentsAPI
 
     defer.promise
 
-  repos: -> @request().then (repos) -> _.pluck(repos, "name")
+  repos: -> @request().then (repos) ->
+    _.map repos, (result) -> "#{result.owner}/#{result.name}"
 
 module.exports = BowerComponentsAPI
