@@ -45,9 +45,8 @@ parseRepo = (result) ->
 fetchRepositories = ->
   if canRun()
     new FetchAPI(bowerApi.repos(), customElementsApi.repos()).repos().then (repositories) ->
-      return false unless repositories
-
-      iterateRepositories(repositories)
+      if repositories
+        iterateRepositories(repositories)
   else
     console.log "I can't fetch repositories, please setup environment vars!"
 
