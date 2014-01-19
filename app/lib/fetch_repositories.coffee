@@ -11,8 +11,11 @@ redisClient       = require("../config/database")
 FETCH_INTERVAL         = process.env.FETCH_INTERVAL || 3600000
 BOWER_API_URL          = process.env.BOWER_API_URL || false
 CUSTOMELEMENTS_API_URL = process.env.CUSTOMELEMENTS_API_URL || false
+GITHUB_API_URL         = process.env.GITHUB_API_URL || false
+GITHUB_USERNAME        = process.env.GITHUB_USERNAME || false
+GITHUB_PASSWORD        = process.env.GITHUB_PASSWORD || false
 
-githubApi   = new GithubAPI()
+githubApi   = new GithubAPI({apiUrl: GITHUB_API_URL, username: GITHUB_USERNAME, password: GITHUB_PASSWORD})
 
 canRun = -> !!(FETCH_INTERVAL && BOWER_API_URL && CUSTOMELEMENTS_API_URL)
 

@@ -1,8 +1,6 @@
 Q           = require('q')
 request     = require('request')
 
-API_URL = "https://api.github.com/repos/"
-
 requestAPI = (url) ->
   defer = Q.defer()
   options =
@@ -10,6 +8,11 @@ requestAPI = (url) ->
     json: true
     headers:
       'User-Agent': 'customelementsio'
+
+  if options.username && options.password
+    options.auth =
+      username: config.username
+      password: config.password
 
   request options, (error, response, body) ->
     defer.reject new Error(error) if error
@@ -20,12 +23,12 @@ requestAPI = (url) ->
   defer.promise
 
 class GithubAPI
-  constructor: ->
+  constructor: (@config) ->
 
   repo: (repository) ->
     defer = Q.defer()
 
-    requestAPI("#{API_URL}#{repository}")
+    requestAPI("#{@config.apiUrl}#{repository}")
       .then (repo) ->
         defer.resolve repo
 
