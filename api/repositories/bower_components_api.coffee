@@ -1,4 +1,5 @@
-Q = require('q')
+Q       = require('q')
+_       = require("lodash")
 request = require('request')
 
 class BowerComponentsAPI
@@ -19,5 +20,7 @@ class BowerComponentsAPI
       defer.resolve body
 
     defer.promise
+
+  repos: -> @request().then (repos) -> _.pluck(JSON.parse(repos), "name")
 
 module.exports = BowerComponentsAPI

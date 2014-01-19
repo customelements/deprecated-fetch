@@ -1,5 +1,8 @@
 expect             = require('chai').expect
 Q                  = require('q')
+_                  = require('lodash')
+fs                 = require('fs')
+path               = require('path')
 BowerComponentsAPI = projectRequire("api/repositories/bower_components_api")
 
 APIendPoint = "https://bower-component-list.herokuapp.com/keyword/web-components"
@@ -37,3 +40,20 @@ describe "Bower Components API", ->
           done()
 
         .fail (err) -> done(err)
+
+  describe "#repos", ->
+    m = {}
+    before ->
+      m.klass = _.clone(BowerComponentsAPI)
+      m.klass.prototype.request = ->
+        Q.nfcall(fs.readFile, path.join(__dirname, "..", "..", "fixtures", "api", "bower_components_api.json"))
+
+      m.api = new m.klass("what-ever")
+
+    it "returns empty json for bad request", (done) ->
+      m.api.repos().then (repos) ->
+        expect(repos[0]).eq "x-tag-view"
+        expect(repos[1]).eq "x-tag-transitions"
+
+        done()
+      .fail (err) -> done(err)
