@@ -1,36 +1,11 @@
 express           = require('express')
-app               = express()
 BowerAPI          = require('../api/repositories/bower_components_api')
 CustomElementsAPI = require('../api/repositories/customelements_api')
 FetchAPI          = require('../api/repositories/fetch_api')
+fetchRepositories = require('./lib/fetch_repositories')
 
-# Vars
-FETCH_INTERVAL         = process.env.FETCH_INTERVAL || 20000
-BOWER_API_URL          = process.env.API_BOWER_URL || false
-CUSTOMELEMENTS_API_URL = process.env.API_CUSTOMELEMENTS_URL || false
-fetchTimes = 0
+app        = express()
+serverPort = process.env.PORT || 3000
 
-canRun = -> !!(FETCH_INTERVAL && BOWER_API_URL && CUSTOMELEMENTS_API_URL)
-
-fetchRepositories = ->
-  if canRun()
-    bower          = new BowerAPI(BOWER_API_URL)
-    customElements = new CustomElementsAPI(CUSTOMELEMENTS_API_URL)
-
-    new FetchAPI(bower.repos(), customElements.repos()).repos().then (repositories) ->
-      if repositories
-        fetchTimes++
-
-        console.log "Repositories updated. #{fetchTimes} time(s) and running."
-  else
-    console.log "I can't fetch repositories, please setup env vars"
-
-  setTimeout ->
-    fetchRepositories()
-  , FETCH_INTERVAL
-
-# Start the server
-app.listen 3000, ->
-  console.log "Server started."
-
+app.listen serverPort, ->
   fetchRepositories()
