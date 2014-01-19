@@ -6,7 +6,8 @@
     "express": "3.4.0",
     "coffee-script": "~1.6.3",
     "q": "~1.0.0",
-    "request": "~2.33.0"
+    "request": "~2.33.0",
+    "lodash": "~2.4.1"
   },
   "scripts": {
     "start": "node server.js"

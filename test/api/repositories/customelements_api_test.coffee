@@ -1,7 +1,8 @@
 expect            = require('chai').expect
-path              = require("path")
-fs                = require("fs")
 Q                 = require('q')
+_                 = require('lodash')
+fs                = require('fs')
+path              = require('path')
 CustomElementsAPI = projectRequire("api/repositories/customelements_api")
 
 APIendPoint = "https://raw2.github.com/customelements/customelements.io/gh-pages/data/repos.json"
@@ -39,3 +40,20 @@ describe "CustomElements API", ->
           done()
 
         .fail (err) -> done(err)
+
+  describe "#repos", ->
+    m = {}
+    before ->
+      m.klass = _.clone(CustomElementsAPI)
+      m.klass.prototype.request = ->
+        Q.nfcall(fs.readFile, path.join(__dirname, "..", "..", "fixtures", "api", "customelements_api.json"))
+
+      m.api = new m.klass("what-ever")
+
+    it "returns empty json for bad request", (done) ->
+      m.api.repos().then (repos) ->
+        expect(repos[0]).eq "x-tag/appbar"
+        expect(repos[1]).eq "x-tag/flipbox"
+
+        done()
+      .fail (err) -> done(err)

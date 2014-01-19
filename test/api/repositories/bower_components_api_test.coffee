@@ -1,6 +1,4 @@
 expect             = require('chai').expect
-path               = require("path")
-fs                 = require("fs")
 Q                  = require('q')
 BowerComponentsAPI = projectRequire("api/repositories/bower_components_api")
 
