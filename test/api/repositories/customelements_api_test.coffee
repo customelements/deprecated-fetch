@@ -46,7 +46,12 @@ describe "CustomElements API", ->
     before ->
       m.klass = _.clone(CustomElementsAPI)
       m.klass.prototype.request = ->
-        Q.nfcall(fs.readFile, path.join(__dirname, "..", "..", "fixtures", "api", "customelements_api.json"))
+        defer = Q.defer()
+        fs.readFile path.join(__dirname, "..", "..", "fixtures", "api", "customelements_api.json"), (err, file) ->
+          defer.reject(err) if err
+          defer.resolve(JSON.parse(file))
+
+        defer.promise
 
       m.api = new m.klass("what-ever")
 

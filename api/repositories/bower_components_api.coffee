@@ -21,6 +21,6 @@ class BowerComponentsAPI
 
     defer.promise
 
-  repos: -> @request().then (repos) -> _.pluck(JSON.parse(repos), "name")
+  repos: -> @request().then (repos) -> _.pluck(repos, "name")
 
 module.exports = BowerComponentsAPI

@@ -46,7 +46,12 @@ describe "Bower Components API", ->
     before ->
       m.klass = _.clone(BowerComponentsAPI)
       m.klass.prototype.request = ->
-        Q.nfcall(fs.readFile, path.join(__dirname, "..", "..", "fixtures", "api", "bower_components_api.json"))
+        defer = Q.defer()
+        fs.readFile path.join(__dirname, "..", "..", "fixtures", "api", "bower_components_api.json"), (err, file) ->
+          defer.reject(err) if err
+          defer.resolve(JSON.parse(file))
+
+        defer.promise
 
       m.api = new m.klass("what-ever")
 

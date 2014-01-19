@@ -21,6 +21,6 @@ class CustomElementsAPI
 
     defer.promise
 
-  repos: -> @request().then (repos) -> _.pluck(JSON.parse(repos), "repository")
+  repos: -> @request().then (repos) -> _.pluck(repos, "repository")
 
 module.exports = CustomElementsAPI
