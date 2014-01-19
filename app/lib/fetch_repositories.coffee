@@ -1,19 +1,18 @@
 Q     = require('q')
 _     = require('lodash')
-redis = require("redis")
 
 BowerAPI          = require('../../api/bower_components_api')
 CustomElementsAPI = require('../../api/customelements_api')
 FetchAPI          = require('../../api/fetch_api')
 GithubAPI         = require('../../api/github_api')
 Repository        = require('../models/repository')
+redisClient       = require("../config/database")
 
 FETCH_INTERVAL         = process.env.FETCH_INTERVAL || 3600000
 BOWER_API_URL          = process.env.BOWER_API_URL || false
 CUSTOMELEMENTS_API_URL = process.env.CUSTOMELEMENTS_API_URL || false
 
 githubApi   = new GithubAPI()
-redisClient = redis.createClient()
 
 canRun = -> !!(FETCH_INTERVAL && BOWER_API_URL && CUSTOMELEMENTS_API_URL)
 

@@ -1,8 +1,7 @@
 express           = require('express')
-redis             = require("redis")
 fetchRepositories = require('./lib/fetch_repositories')
+redisClient       = require("./config/database")
 
-redisClient = redis.createClient()
 app         = express()
 serverPort  = process.env.PORT || 3000
 
