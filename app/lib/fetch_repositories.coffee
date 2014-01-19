@@ -8,11 +8,9 @@ FetchAPI          = require('../../api/fetch_api')
 GithubAPI         = require('../../api/github_api')
 Repository        = require('../models/repository')
 
-BOWER_API_URL = "https://bower-component-list.herokuapp.com/keyword/web-components"
-CUSTOMELEMENTS_API_URL = "https://raw2.github.com/customelements/customelements.io/gh-pages/data/repos.json"
 FETCH_INTERVAL         = process.env.FETCH_INTERVAL || 3600000
-# BOWER_API_URL          = process.env.API_BOWER_URL || false
-# CUSTOMELEMENTS_API_URL = process.env.API_CUSTOMELEMENTS_URL || false
+BOWER_API_URL          = process.env.API_BOWER_URL || false
+CUSTOMELEMENTS_API_URL = process.env.API_CUSTOMELEMENTS_URL || false
 githubApi   = new GithubAPI()
 redisClient = redis.createClient()
 
