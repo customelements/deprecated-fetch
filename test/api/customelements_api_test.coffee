@@ -3,7 +3,7 @@ Q                 = require('q')
 _                 = require('lodash')
 fs                = require('fs')
 path              = require('path')
-CustomElementsAPI = projectRequire("api/repositories/customelements_api")
+CustomElementsAPI = projectRequire("api/customelements_api")
 
 APIendPoint = "https://raw2.github.com/customelements/customelements.io/gh-pages/data/repos.json"
 
@@ -47,7 +47,7 @@ describe "CustomElements API", ->
       m.klass = _.clone(CustomElementsAPI)
       m.klass.prototype.request = ->
         defer = Q.defer()
-        fs.readFile path.join(__dirname, "..", "..", "fixtures", "api", "customelements_api.json"), (err, file) ->
+        fs.readFile path.join(__dirname, "..", "fixtures", "api", "customelements_api.json"), (err, file) ->
           defer.reject(err) if err
           defer.resolve(JSON.parse(file))
 

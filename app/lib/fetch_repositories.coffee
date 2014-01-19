@@ -1,6 +1,6 @@
-BowerAPI          = require('../../api/repositories/bower_components_api')
-CustomElementsAPI = require('../../api/repositories/customelements_api')
-FetchAPI          = require('../../api/repositories/fetch_api')
+BowerAPI          = require('../../api/bower_components_api')
+CustomElementsAPI = require('../../api/customelements_api')
+FetchAPI          = require('../../api/fetch_api')
 
 FETCH_INTERVAL         = process.env.FETCH_INTERVAL || 20000
 BOWER_API_URL          = process.env.API_BOWER_URL || false

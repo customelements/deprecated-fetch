@@ -3,7 +3,7 @@ Q                  = require('q')
 _                  = require('lodash')
 fs                 = require('fs')
 path               = require('path')
-BowerComponentsAPI = projectRequire("api/repositories/bower_components_api")
+BowerComponentsAPI = projectRequire("api/bower_components_api")
 
 APIendPoint = "https://bower-component-list.herokuapp.com/keyword/web-components"
 
@@ -47,7 +47,7 @@ describe "Bower Components API", ->
       m.klass = _.clone(BowerComponentsAPI)
       m.klass.prototype.request = ->
         defer = Q.defer()
-        fs.readFile path.join(__dirname, "..", "..", "fixtures", "api", "bower_components_api.json"), (err, file) ->
+        fs.readFile path.join(__dirname, "..", "fixtures", "api", "bower_components_api.json"), (err, file) ->
           defer.reject(err) if err
           defer.resolve(JSON.parse(file))
 

@@ -1,7 +1,7 @@
 expect   = require('chai').expect
 Q        = require('q')
 _        = require('lodash')
-FetchAPI = projectRequire("api/repositories/fetch_api")
+FetchAPI = projectRequire("api/fetch_api")
 
 describe "Fetch API", ->
   describe "#constructor", ->
