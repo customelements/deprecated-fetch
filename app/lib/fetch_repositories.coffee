@@ -15,7 +15,7 @@ GITHUB_API_URL         = process.env.GITHUB_API_URL || false
 GITHUB_USERNAME        = process.env.GITHUB_USERNAME || false
 GITHUB_PASSWORD        = process.env.GITHUB_PASSWORD || false
 
-githubApi   = new GithubAPI({apiUrl: GITHUB_API_URL, username: GITHUB_USERNAME, password: GITHUB_PASSWORD})
+githubApi = new GithubAPI({apiUrl: GITHUB_API_URL, auth: {username: GITHUB_USERNAME, password: GITHUB_PASSWORD}})
 
 canRun = -> !!(FETCH_INTERVAL && BOWER_API_URL && CUSTOMELEMENTS_API_URL)
 
@@ -54,7 +54,10 @@ parseJsonFrom = (reposJson) ->
           stars: repo.stargazers_count
 
         new Repository(data).toJSON()
+      else
+        false
 
+    repos = _.compact(repos)
     redisClient.set('repositories', JSON.stringify(repos))
 
     console.log "Repositories updated."

@@ -1,20 +1,18 @@
+_           = require('lodash')
 Q           = require('q')
 request     = require('request')
 
-requestAPI = (url) ->
+requestAPI = (options) ->
   defer = Q.defer()
-  options =
-    uri: url
+  defaults =
     json: true
     headers:
       'User-Agent': 'customelementsio'
 
-  if options.username && options.password
-    options.auth =
-      username: config.username
-      password: config.password
+  options = _.assign(defaults, options)
 
   request options, (error, response, body) ->
+    console.log error, response, body
     defer.reject new Error(error) if error
     defer.reject new Error("404") if response.statusCode != 200
 
@@ -28,7 +26,10 @@ class GithubAPI
   repo: (repository) ->
     defer = Q.defer()
 
-    requestAPI("#{@config.apiUrl}#{repository}")
+    options = @config
+    options.uri = "#{@config.apiUrl}#{repository}"
+
+    requestAPI(options)
       .then (repo) ->
         defer.resolve repo
 
