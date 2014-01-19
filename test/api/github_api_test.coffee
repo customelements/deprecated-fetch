@@ -1,31 +1,31 @@
-expect           = require('chai').expect
-_                = require('lodash')
-Q                = require('q')
-fs               = require('fs')
-path             = require('path')
-RepositoryParser = projectRequire("app/lib/repository_parser")
+expect    = require('chai').expect
+_         = require('lodash')
+Q         = require('q')
+fs        = require('fs')
+path      = require('path')
+GithubAPI = projectRequire("api/github_api")
 
 APIendPoint = "https://api.github.com/repos/"
 
 describe "Repository Parse", ->
   describe "#constructor", ->
-    it "creates an instance of RepositoryParser", ->
-      expect(new RepositoryParser()).to.be.instanceOf RepositoryParser
+    it "creates an instance of GithubAPI", ->
+      expect(new GithubAPI()).to.be.instanceOf GithubAPI
 
     it "expect apiUrl property", ->
-      api = new RepositoryParser()
+      api = new GithubAPI()
 
       expect(api.apiUrl).eq ""
 
   describe "#request", ->
     it "fail for a invalid url", (done) ->
-      api = new RepositoryParser("bad-url")
+      api = new GithubAPI("bad-url")
 
       api.request().fail (err) -> done()
 
     describe "with Real API URL", ->
       it "returns the full json of repo in github", (done) ->
-        api = new RepositoryParser("#{APIendPoint}djalmaaraujo/macbook-bootstrap")
+        api = new GithubAPI("#{APIendPoint}djalmaaraujo/macbook-bootstrap")
 
         api.request().then (repo) ->
           expect(repo.id).eq 9842244
@@ -36,19 +36,19 @@ describe "Repository Parse", ->
 
         .fail (err) -> done(err)
 
-  describe "#fetch", ->
+  describe "#repo", ->
     describe "invalid", ->
       it "fails for a invalid repo", (done) ->
-        api = new RepositoryParser("bad-url")
+        api = new GithubAPI("bad-url")
         api.request().fail (err) -> done()
 
     describe "valid", ->
       m = {}
       before ->
-        m.klass = _.clone(RepositoryParser)
+        m.klass = _.clone(GithubAPI)
         m.klass.prototype.request = ->
           defer = Q.defer()
-          fs.readFile path.join(__dirname, "..", "..", "fixtures", "app", "lib", "repository.json"), (err, file) ->
+          fs.readFile path.join(__dirname, "..", "fixtures", "app", "lib", "repository.json"), (err, file) ->
             defer.reject(err) if err
             defer.resolve(JSON.parse(file))
 
@@ -57,7 +57,7 @@ describe "Repository Parse", ->
         m.api = new m.klass("what-ever")
 
       it "returns a repository object based on repository model", (done) ->
-        m.api.fetch("djalmaaraujo/macbook-bootstrap").then (repo) ->
+        m.api.repo("djalmaaraujo/macbook-bootstrap").then (repo) ->
           json = repo.toJSON()
 
           expect(json.name).eq "macbook-bootstrap"

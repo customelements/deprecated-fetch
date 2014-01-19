@@ -2,10 +2,10 @@ Q          = require('q')
 request    = require('request')
 Repository = require("../app/models/repository")
 
-class RepositoryParser
+class GithubAPI
   constructor: (@apiUrl = "") ->
 
-  fetch: (repository) ->
+  repo: (repository) ->
     defer = Q.defer()
 
     @request("#{@apiUrl}#{repository}")
@@ -39,4 +39,4 @@ class RepositoryParser
 
     defer.promise
 
-module.exports = RepositoryParser
+module.exports = GithubAPI
