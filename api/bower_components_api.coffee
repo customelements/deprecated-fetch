@@ -22,6 +22,9 @@ class BowerComponentsAPI
     defer.promise
 
   repos: -> @request().then (repos) ->
-    _.map repos, (result) -> "#{result.owner}/#{result.name}"
+
+    _.map repos, (result) ->
+      name = result.name.replace("#{result.owner}-", "")
+      "#{result.owner}/#{name}"
 
 module.exports = BowerComponentsAPI

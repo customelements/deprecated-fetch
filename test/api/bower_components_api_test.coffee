@@ -57,8 +57,8 @@ describe "Bower Components API", ->
 
     it "returns empty json for bad request", (done) ->
       m.api.repos().then (repos) ->
-        expect(repos[0]).eq "x-tag/x-tag-view"
-        expect(repos[1]).eq "x-tag/x-tag-transitions"
+        expect(repos[0]).eq "x-tag/view"
+        expect(repos[1]).eq "x-tag/transitions"
 
         done()
       .fail (err) -> done(err)
