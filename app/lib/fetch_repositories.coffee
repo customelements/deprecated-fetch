@@ -1,23 +1,26 @@
 Q                      = require('q')
 _                      = require('lodash')
 
-BowerAPI               = require('../../api/bower_components_api')
-CustomElementsAPI      = require('../../api/customelements_api')
-FetchAPI               = require('../../api/fetch_api')
-GithubAPI              = require('../../api/github_api')
-Repository             = require('../models/repository')
-redisClient            = require("../config/database")
+BowerAPI          = require('../../api/bower_components_api')
+CustomElementsAPI = require('../../api/customelements_api')
+FetchAPI          = require('../../api/fetch_api')
+GithubAPI         = require('../../api/github_api')
+BlacklistAPI      = require('../../api/blacklist_api')
+Repository        = require('../models/repository')
+redisClient       = require("../config/database")
 
 FETCH_INTERVAL         = process.env.FETCH_INTERVAL || 3600000
 BOWER_API_URL          = process.env.BOWER_API_URL || false
+BLACKLIST_API_URL      = process.env.BLACKLIST_API_URL || false
 CUSTOMELEMENTS_API_URL = process.env.CUSTOMELEMENTS_API_URL || false
 GITHUB_API_URL         = process.env.GITHUB_API_URL || false
 GITHUB_USERNAME        = process.env.GITHUB_USERNAME || false
 GITHUB_PASSWORD        = process.env.GITHUB_PASSWORD || false
 
-githubApi              = new GithubAPI({apiUrl: GITHUB_API_URL, auth: {username: GITHUB_USERNAME, password: GITHUB_PASSWORD}})
-bowerApi               = new BowerAPI(BOWER_API_URL)
-customElementsApi      = new CustomElementsAPI(CUSTOMELEMENTS_API_URL)
+githubApi         = new GithubAPI({apiUrl: GITHUB_API_URL, auth: {username: GITHUB_USERNAME, password: GITHUB_PASSWORD}})
+bowerApi          = new BowerAPI(BOWER_API_URL)
+customElementsApi = new CustomElementsAPI(CUSTOMELEMENTS_API_URL)
+blackListApi      = new BlacklistAPI(BLACKLIST_API_URL)
 
 canRun = -> !!(FETCH_INTERVAL && BOWER_API_URL && CUSTOMELEMENTS_API_URL)
 
@@ -44,9 +47,13 @@ parseRepo = (result) ->
 
 fetchRepositories = ->
   if canRun()
-    new FetchAPI(bowerApi.repos(), customElementsApi.repos()).repos().then (repositories) ->
-      if repositories
-        iterateRepositories(repositories)
+    blacklist = []
+    blackListApi.repos().then (blackListedRepos) ->
+      blacklist = blackListedRepos if blackListedRepos.length
+
+      new FetchAPI(bowerApi.repos(), customElementsApi.repos()).repos(exclude: blacklist).then (repositories) ->
+        if repositories
+          iterateRepositories(repositories)
   else
     console.log "I can't fetch repositories, please setup environment vars!"
 
