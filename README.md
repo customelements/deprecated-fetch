@@ -1,4 +1,4 @@
-# CustomElements.io — Fetch Service
+# CustomElements.io — Fetch Service [![Build Status](https://secure.travis-ci.org/customelements/fetch-service.png?branch=master)](https://travis-ci.org/customelements/fetch-service)
 
 This project is responsible for generating the Web Components list on [CustomElements.io](http://customelements.io).
 
