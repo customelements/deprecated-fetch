@@ -21,6 +21,7 @@ And here's what we do to accomplish that:
 $ export REDISTOGO_URL
 $ export BOWER_API_URL
 $ export CUSTOMELEMENTS_API_URL
+$ export BLACKLIST_API_URL
 $ export GITHUB_API_URL
 $ export GITHUB_USERNAME
 $ export GITHUB_PASSWORD
