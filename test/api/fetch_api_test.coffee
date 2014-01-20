@@ -58,3 +58,18 @@ describe "Fetch API", ->
         done()
 
       .fail (err) -> done(err)
+
+    describe "Excluding", ->
+      it "returns all jsons filtered by exclude option", (done) ->
+        json1        = ['repo1', 'repo2']
+        json2        = ['repo3', 'repo4']
+        excludeRepos = ['repo2', 'repo4']
+
+        api = new FetchAPI(Q(json1), Q(json2))
+
+        api.repos(exclude: excludeRepos).then (repos) ->
+          expect(repos).eql ['repo1', 'repo3']
+
+          done()
+
+        .fail (err) -> done(err)
