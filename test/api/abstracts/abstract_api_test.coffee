@@ -39,3 +39,10 @@ describe "Abstract API", ->
 
         .fail (err) -> done(err)
 
+  describe.only "#repos", ->
+    it "expects to resolve a empty array", ->
+      api = new AbstractAPI("xxx")
+      api.repos().then (repos) ->
+        expect(repos.length).eq 0
+
+        done()

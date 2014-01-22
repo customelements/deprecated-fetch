@@ -21,5 +21,6 @@ class AbstractAPI
 
     defer.promise
 
+  repos: -> Q([])
 
 module.exports = AbstractAPI
