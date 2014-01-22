@@ -7,8 +7,6 @@ responseIsOk = (error, response) -> !error && response && response['statusCode']
 class BowerComponentsAPI
   constructor: (@apiUrl = "") ->
 
-  repos: -> Q {}
-
   request: ->
     defer = Q.defer()
     options =

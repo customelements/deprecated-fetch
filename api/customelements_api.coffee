@@ -7,8 +7,6 @@ responseIsOk = (error, response) -> !error && response && response['statusCode']
 class CustomElementsAPI
   constructor: (@apiUrl = "") ->
 
-  repos: -> Q {}
-
   request: ->
     defer = Q.defer()
     options =
