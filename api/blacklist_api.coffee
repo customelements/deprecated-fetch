@@ -4,8 +4,7 @@ request = require('request')
 
 class BlackListApi
   constructor: (@apiUrl = "") ->
-
-  repos: -> Q {}
+    @repositories = []
 
   request: ->
     defer = Q.defer()
@@ -21,6 +20,9 @@ class BlackListApi
 
     defer.promise
 
-  repos: -> @request().then (repos) -> _.pluck(repos, "repository")
+  repos: -> @request().then (repos) ->
+    @repositories = repos if repos.length
+
+    _.pluck(@repositories, "repository")
 
 module.exports = BlackListApi

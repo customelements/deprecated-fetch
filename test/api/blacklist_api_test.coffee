@@ -7,7 +7,7 @@ BlackListApi = projectRequire("api/blacklist_api")
 
 APIendPoint = "https://raw2.github.com/customelements/customelements.io/gh-pages/data/blacklist.json"
 
-describe "Blacklist Api", ->
+describe.only "Blacklist Api", ->
   describe "#constructor", ->
     it "creates an instance of BlackListApi", ->
       expect(new BlackListApi()).to.be.instanceOf BlackListApi
