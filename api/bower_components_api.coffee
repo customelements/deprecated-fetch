@@ -2,6 +2,8 @@ Q       = require('q')
 _       = require("lodash")
 request = require('request')
 
+responseIsOk = (error, response) -> !error && response && response['statusCode'] != 200
+
 class BowerComponentsAPI
   constructor: (@apiUrl = "") ->
 
@@ -15,7 +17,7 @@ class BowerComponentsAPI
 
     request options, (error, response, body) ->
       defer.reject new Error(error) if error
-      defer.reject new Error(error) if !error && response.statusCode != 200
+      defer.reject new Error(error) if responseIsOk(error, response)
 
       defer.resolve body
 
