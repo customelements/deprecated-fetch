@@ -2,6 +2,8 @@ _           = require('lodash')
 Q           = require('q')
 request     = require('request')
 
+responseIsOk = (error, response) -> !error && response && response['statusCode'] != 200
+
 requestAPI = (options) ->
   defer = Q.defer()
   defaults =
@@ -13,7 +15,7 @@ requestAPI = (options) ->
 
   request options, (error, response, body) ->
     defer.reject new Error(error) if error
-    defer.reject new Error("404") if response.statusCode != 200
+    defer.reject new Error("404") if responseIsOk(error, response)
 
     defer.resolve body
 
