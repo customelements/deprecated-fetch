@@ -1,25 +1,10 @@
-Q       = require('q')
-_       = require("lodash")
-request = require('request')
+Q           = require('q')
+_           = require("lodash")
+request     = require('request')
+AbstractAPI = require('./abstracts/abstract_api')
 
-responseIsOk = (error, response) -> !error && response && response['statusCode'] != 200
-
-class CustomElementsAPI
+class CustomElementsAPI extends AbstractAPI
   constructor: (@apiUrl = "") ->
-
-  request: ->
-    defer = Q.defer()
-    options =
-      uri: @apiUrl
-      json: true
-
-    request options, (error, response, body) ->
-      defer.reject new Error(error) if error
-      defer.reject new Error(error) if responseIsOk(error, response)
-
-      defer.resolve body
-
-    defer.promise
 
   repos: -> @request().then (repos) -> _.pluck(repos, "repository")
 
