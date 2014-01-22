@@ -12,17 +12,6 @@ describe "Bower Components API", ->
     it "creates an instance of BowerComponentsAPI", ->
       expect(new BowerComponentsAPI()).to.be.instanceOf BowerComponentsAPI
 
-  describe "Properties", ->
-    api = null
-
-    expectProperty = (name, value = "") ->
-      it "expect #{name} property", ->
-        api = new BowerComponentsAPI()
-
-        expect(api[name]).eq value
-
-    expectProperty("apiUrl")
-
   describe "#request", ->
     it "fail for a invalid url", (done) ->
       api = new BowerComponentsAPI("bad-url")

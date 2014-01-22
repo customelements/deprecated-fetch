@@ -1,28 +1,10 @@
-Q       = require('q')
-_       = require("lodash")
-request = require('request')
+Q           = require('q')
+_           = require("lodash")
+request     = require('request')
+AbstractAPI = require('./abstracts/abstract_api')
 
-responseIsOk = (error, response) -> !error && response && response['statusCode'] != 200
-
-class BowerComponentsAPI
-  constructor: (@apiUrl = "") ->
-
-  request: ->
-    defer = Q.defer()
-    options =
-      uri: @apiUrl
-      json: true
-
-    request options, (error, response, body) ->
-      defer.reject new Error(error) if error
-      defer.reject new Error(error) if responseIsOk(error, response)
-
-      defer.resolve body
-
-    defer.promise
-
+class BowerComponentsAPI extends AbstractAPI
   repos: -> @request().then (repos) ->
-
     _.map repos, (result) -> result.website.replace("https://github.com/", "")
 
 module.exports = BowerComponentsAPI
