@@ -1,10 +1,10 @@
-# CustomElements.io — Fetch Service [![Build Status](https://secure.travis-ci.org/customelements/fetch-service.png?branch=master)](https://travis-ci.org/customelements/fetch-service)
+# CustomElements.io — Fetch Service [![Build Status](https://secure.travis-ci.org/WebComponentsOrg/fetch-service.png?branch=master)](https://travis-ci.org/WebComponentsOrg/fetch-service)
 
 This project is responsible for generating the Web Components list on [CustomElements.io](http://customelements.io).
 
 And here's what we do to accomplish that:
 
-1. Grabs the [static list of Web Components](https://github.com/customelements/customelements.io/blob/gh-pages/data/repos.json).
+1. Grabs the [static list of Web Components](https://github.com/WebComponentsOrg/customelements.io/blob/gh-pages/data/repos.json).
 2. Fetches all the information from GitHub's API based on that list.
 3. Merges this list with all [Bower components tagged with web-components](https://bower-component-list.herokuapp.com/keyword/web-components).
 
@@ -30,7 +30,7 @@ $ export GITHUB_PASSWORD
 
 # Installation
 ```bash
-$ git clone git@github.com:customelements/fetch-service.git
+$ git clone git@github.com:WebComponentsOrg/fetch-service.git
 $ npm install
 ```
 
