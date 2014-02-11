@@ -5,7 +5,7 @@ fs                = require('fs')
 path              = require('path')
 CustomElementsAPI = projectRequire("api/customelements_api")
 
-APIendPoint = "https://raw2.github.com/customelements/customelements.io/gh-pages/data/repos.json"
+APIendPoint = "https://raw2.github.com/webcomponents/customelements.io/gh-pages/data/repos.json"
 
 describe "CustomElements API", ->
   describe "#constructor", ->
