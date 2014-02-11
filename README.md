@@ -7,6 +7,7 @@ And here's what we do to accomplish that:
 1. Grabs the [static list of Web Components](https://github.com/webcomponents/customelements.io/blob/gh-pages/data/repos.json).
 2. Fetches all the information from GitHub's API based on that list.
 3. Merges this list with all [Bower components tagged with web-components](https://bower-component-list.herokuapp.com/keyword/web-components).
+4. Generates an [output in JSON format](http://customelementsio.herokuapp.com/).
 
 > **Maintainer:** [Djalma Araújo](https://github.com/djalmaaraujo)
 
