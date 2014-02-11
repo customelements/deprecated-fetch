@@ -42,5 +42,6 @@ class RepositoryHandler
       description: repo.description
       forks: repo.forks_count
       stars: repo.stargazers_count
+      created: repo.created_at
 
 module.exports = RepositoryHandler
