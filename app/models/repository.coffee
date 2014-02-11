@@ -4,6 +4,7 @@ BLANK_REPO =
   description: ""
   forks: 0
   stars: 0
+  created: ""
 
 PREFIX = "https://github.com/"
 
@@ -16,6 +17,7 @@ class Repository
     @description = repository.description
     @forks       = repository.forks
     @stars       = repository.stars
+    @created     = repository.created
 
   toJSON: ->
     {
@@ -26,6 +28,7 @@ class Repository
       description: @description
       forks: @forks
       stars: @stars
+      created: @created
     }
 
   repositoryUrl: ->

@@ -22,13 +22,14 @@ describe "Repository", ->
     expectProperty("description")
     expectProperty("forks", 0)
     expectProperty("stars", 0)
+    expectProperty("created", "")
 
   describe "#toJSON", ->
     it "expect to return the repository as a json", ->
       repository =
         name: "fetch-service"
         owner: "customelements"
-        url: "https://github.com/customelements/fetch-service"
+        url: "https://github.com/webcomponents/fetch-service"
         description: "Some description"
         forks: 20
         stars: 10
