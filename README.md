@@ -49,4 +49,4 @@ $ git push heroku master
 
 ## License
 
-[MIT License](http://djalmaaraujo.mit-license.org/) © Djalma Araújo
+[MIT License](http://webcomponentsorg.mit-license.org/) © WebComponents.org
