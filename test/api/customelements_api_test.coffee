@@ -34,8 +34,8 @@ describe "CustomElements API", ->
         api = new CustomElementsAPI(APIendPoint)
 
         api.request().then (repos) ->
-          expect(repos[0].repository).eql "x-tag/appbar"
-          expect(repos[1].repository).eql "x-tag/flipbox"
+          expect(repos[0].repository).to.not.be.empty
+          expect(repos[1].repository).to.not.be.empty
 
           done()
 
@@ -57,8 +57,8 @@ describe "CustomElements API", ->
 
     it "returns empty json for bad request", (done) ->
       m.api.repos().then (repos) ->
-        expect(repos[0]).eq "x-tag/appbar"
-        expect(repos[1]).eq "x-tag/flipbox"
+        expect(repos[0]).to.not.be.empty
+        expect(repos[1]).to.not.be.empty
 
         done()
       .fail (err) -> done(err)

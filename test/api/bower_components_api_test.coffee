@@ -23,8 +23,8 @@ describe "Bower Components API", ->
         api = new BowerComponentsAPI(APIendPoint)
 
         api.request().then (repos) ->
-          expect(repos[0].name).eql "x-tag-view"
-          expect(repos[1].name).eql "x-tag-transitions"
+          expect(repos[0].name).to.not.be.empty
+          expect(repos[1].name).to.not.be.empty
 
           done()
 
