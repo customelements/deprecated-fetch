@@ -1,0 +1,76 @@
+{
+"rows": [
+{
+"key": [
+"web-components",
+"amazeui",
+"Sleek, intuitive, and powerful front-end framework for faster and easier web development."
+],
+"value": 1
+},
+{
+"key": [
+"web-components",
+"componentizer",
+"Make inter-operable web components in your preferred framework"
+],
+"value": 1
+},
+{
+"key": [
+"web-components",
+"declarative-custom-element",
+"Native declarative way to create a custom webcomponent"
+],
+"value": 1
+},
+{
+"key": [
+"web-components",
+"input-password",
+"The input password that you allways want to use in your apps with sign in process."
+],
+"value": 1
+},
+{
+"key": [
+"web-components",
+"karma-webcomponent-helpers",
+"helper functions to assist web component testing"
+],
+"value": 1
+},
+{
+"key": [
+"web-components",
+"math-tex",
+"A web component for mathematical typesetting using TeX notation."
+],
+"value": 1
+},
+{
+"key": [
+"web-components",
+"polymer-simple-slider",
+"A Polymer element providing a simple slider functionality"
+],
+"value": 1
+},
+{
+"key": [
+"web-components",
+"slush-element",
+"A slush generator of custom elements with Polymer, X-Tag or VannilaJS based in generator-element"
+],
+"value": 1
+},
+{
+"key": [
+"web-components",
+"web-components-polyfills",
+"Polyfill for W3C CustomElements Specification"
+],
+"value": 1
+}
+]
+}

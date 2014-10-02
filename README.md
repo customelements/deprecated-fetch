@@ -6,7 +6,7 @@ And here's what we do to accomplish that:
 
 1. Grabs the [static list of Web Components](https://github.com/webcomponents/customelements.io/blob/gh-pages/data/repos.json).
 2. Fetches all the information from GitHub's API based on that list.
-3. Merges this list with all [Bower components tagged with web-components](https://bower-component-list.herokuapp.com/keyword/web-components).
+3. Merges this list with all [Bower components tagged with web-components](https://bower-component-list.herokuapp.com/keyword/web-components) and with all [NPM modules tagged with web-components](https://skimdb.npmjs.com/registry/_design/app/_view/byKeyword?startkey=[%22web-components%22]&endkey=[%22web-components%22,{}]&group_level=3)
 4. Generates an [output in JSON format](http://customelementsio.herokuapp.com/).
 
 > **Maintainer:** [Djalma Araújo](https://github.com/djalmaaraujo)
@@ -22,6 +22,7 @@ And here's what we do to accomplish that:
 $ export REDISTOGO_URL
 $ export BOWER_API_URL
 $ export CUSTOMELEMENTS_API_URL
+$ export NPM_API_URL
 $ export BLACKLIST_API_URL
 $ export FETCH_INTERVAL
 $ export GITHUB_API_URL
