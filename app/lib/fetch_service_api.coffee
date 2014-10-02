@@ -2,11 +2,13 @@ _                 = require('lodash')
 FetchAPI          = require('../../api/fetch_api')
 BowerAPI          = require('../../api/bower_components_api')
 CustomElementsAPI = require('../../api/customelements_api')
+NpmModulesAPI     = require('../../api/npm_modules_api')
 BlacklistAPI      = require('../../api/blacklist_api')
 ENV               = require("../config/env_vars")
 
 bowerApi          = new BowerAPI(ENV['BOWER_API_URL'])
 customElementsApi = new CustomElementsAPI(ENV['CUSTOMELEMENTS_API_URL'])
+npmModulesApi     = new NpmModulesAPI(ENV['NPM_API_URL'])
 
 class FetchServiceAPI
   constructor: ->
@@ -14,6 +16,6 @@ class FetchServiceAPI
 
   repos: ->
     @blackListApi.repos().then (blacklist) =>
-      new FetchAPI(bowerApi.repos(), customElementsApi.repos()).repos(exclude: blacklist)
+      new FetchAPI(bowerApi.repos(), customElementsApi.repos(), npmModulesApi.repos()).repos(exclude: blacklist)
 
 module.exports = FetchServiceAPI

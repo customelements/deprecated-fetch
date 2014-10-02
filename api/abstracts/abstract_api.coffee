@@ -7,10 +7,10 @@ responseIsOk = (error, response) -> !error && response && response['statusCode']
 class AbstractAPI
   constructor: (@apiUrl = "") ->
 
-  request: ->
+  request: (url = false) ->
     defer = Q.defer()
     options =
-      uri: @apiUrl
+      uri: url || @apiUrl
       json: true
 
     request options, (error, response, body) ->

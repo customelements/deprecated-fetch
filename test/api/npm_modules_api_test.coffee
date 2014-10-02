@@ -28,8 +28,30 @@ describe "NPM Modules API", ->
 
     it "returns the json in a common format", (done) ->
       m.api.modules().then (modules) ->
-        expect(modules[0].name).eq "amazeui"
-        expect(modules[1].name).eq "componentizer"
+        expect(modules[0]).eq "amazeui"
+        expect(modules[1]).eq "componentizer"
 
         done()
       .fail (err) -> done(err)
+
+  describe "#repos", ->
+    m = {}
+
+    before ->
+      m.klass = _.clone(NPMModulesAPI)
+      m.klass.prototype.modules = ->
+        defer = Q.defer()
+        defer.resolve(['amazeui', 'componentizer'])
+        defer.promise
+
+      m.api = new m.klass(APIendPoint)
+
+    it 'returns the json of all repos in a common format', (done) ->
+      m.api.repos().then (repos) ->
+        expect(repos[0]).eq "allmobilize/amui"
+        expect(repos[1]).eq "kmalakoff/componentizer"
+
+        done()
+
+      .fail (err) -> done(err)
+
