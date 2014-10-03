@@ -21,6 +21,7 @@ class NPMModulesAPI extends AbstractAPI
             repository = json.repository.url;
             repository = repository.replace('https://github.com/', '')
             repository = repository.replace('http://github.com/', '')
+            repository = repository.replace('git://github.com/', '')
             repository = repository.replace('.git', '') if (json.repository.type == 'git')
 
             repository
