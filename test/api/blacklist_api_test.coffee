@@ -5,7 +5,7 @@ fs           = require('fs')
 path         = require('path')
 BlackListApi = projectRequire("api/blacklist_api")
 
-APIendPoint = "https://raw2.github.com/webcomponents/customelements.io/gh-pages/data/blacklist.json"
+APIendPoint = "https://raw.githubusercontent.com/webcomponents/customelements.io/gh-pages/data/blacklist.json"
 
 describe "Blacklist Api", ->
   describe "#constructor", ->
