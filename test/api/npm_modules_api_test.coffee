@@ -48,7 +48,7 @@ describe "NPM Modules API", ->
 
     it 'returns the json of all repos in a common format', (done) ->
       m.api.repos().then (repos) ->
-        expect(repos[0]).eq "allmobilize/amui"
+        expect(repos[0]).eq "allmobilize/amazeui"
         expect(repos[1]).eq "kmalakoff/componentizer"
 
         done()
